@@ -1,0 +1,5 @@
+<div *ngIf="profiles">
+  <div *ngFor="let profile of profiles">
+    <p>{{ profile.id }}{{ profile.username }}:{{profile.email}}</p>
+  </div>
+</div>

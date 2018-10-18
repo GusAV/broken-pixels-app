@@ -1,0 +1,10 @@
+<div>
+  <h1>Login</h1>
+</div>
+
+<div>
+  <input #username type="text" placeholder="Username">
+  <input #password type="password" placeholder="Password">
+  <button (click)="login(username.value, password.value)">Login</button>
+  {{ loginError?.message }}
+</div>

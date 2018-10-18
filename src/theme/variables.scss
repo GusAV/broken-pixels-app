@@ -1,0 +1,19 @@
+/* default variables for the system */
+
+/* colors */
+$main-orange: #cc8400;
+$main-font-color: #333333;
+
+
+/* fonts */
+@font-face {
+  font-family: "Archivo";
+  src: "./fonts/Archivo-Regular.ttf" format("ttf");
+}
+@font-face {
+  font-family: "Archivo-Bold";
+  src: "./fonts/Archivo-Bold.ttf" format("ttf");
+}
+
+$font-stack: 'Archivo', sans-serif;
+$font-stack-bold: 'Archivo-Bold', sans-serif;

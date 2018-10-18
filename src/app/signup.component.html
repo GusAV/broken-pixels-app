@@ -1,0 +1,11 @@
+<div>
+  <h1>Signup</h1>
+</div>
+
+<div>
+  <input [(ngModel)]="user.username" type="text" placeholder="Username">
+  <input [(ngModel)]="user.email" type="email" placeholder="Email">
+  <input [(ngModel)]="user.password" type="password" placeholder="Password">
+  <button (click)="signup()">Sign up</button>
+  {{ singupError?.message }}
+</div>

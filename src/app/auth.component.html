@@ -1,0 +1,14 @@
+<div *ngIf="!user">
+  <app-login *ngIf="isLogin"></app-login>
+  <app-signup *ngIf="!isLogin"></app-signup>
+
+  <button (click)="isLogin = !isLogin">
+    <span *ngIf="isLogin">signup</span>
+    <span *ngIf="!isLogin">login</span>
+  </button>
+</div>
+
+<div *ngIf="user">
+  Welcome {{ user.username }}
+  <button (click)="logout()">Logout</button>
+</div>
