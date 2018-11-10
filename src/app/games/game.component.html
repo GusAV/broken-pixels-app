@@ -1,0 +1,33 @@
+<div class="main-body" *ngIf="game">
+  <div class="game-box">
+    <div class="header">
+      <img src="http:{{ cover }}">
+
+      <div class="title-summary">
+        <h1>{{ game.name }}</h1>
+        <p>{{ game.summary }}</p>
+      </div>
+    </div>
+
+    <div class="review-textarea">
+      <div *ngIf="!reviewText" class="dash"></div>
+      <textarea
+        placeholder="Write your critic"
+        maxlength="200"
+        [class.color]="reviewText"
+        (keyup)="countLetters()"
+        [(ngModel)]="reviewText"
+        ></textarea>
+
+      <div class="review-footer">
+        <span *ngIf="noUserError" class="errorText">Please login before sending a review</span>
+        <span class="letters">{{ countLetters() }}</span>
+        <button (click)="createReview()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-list">
+    <app-review-list #reviewComponent></app-review-list>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="review-container">
+  <div class="review-box" *ngFor="let review of reviews">
+    <div class="header">
+      <div class="author">
+        <p>Author: <span>{{ review.review_info['username'] }}</span></p>
+      </div>
+      <div class="game">
+        <p>Game: <span (click)="toGame(review.review_info['game_id'])">{{ review.review_info['game_name'] }}</span></p>
+      </div>
+    </div>
+
+    <div class="review">
+      <p>{{ review.review }}</p>
+    </div>
+  </div>
+</div>

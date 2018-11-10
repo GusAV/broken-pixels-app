@@ -4,11 +4,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { ClickOutsideModule } from 'ng-click-outside';
+
 import { AppComponent } from './app.component';
-import { ProfileModule } from './profiles/profile.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ProfileModule } from './profiles/profile.module';
 import { ProfileRoutingModule } from './profiles/profile-routing.module';
 import { ProfileService } from './profiles/profile.service';
+import { GameModule } from './games/game.module';
+import { GameRoutingModule } from './games/game-routing.module';
+import { GameService } from './games/game.service';
+import { ReviewModule } from './reviews/review.module';
+import { ReviewRoutingModule } from './reviews/review-routing.module';
+import { ReviewService } from './reviews/review.service';
 import { LoginComponent } from './login.component';
 import { AuthComponent } from './auth.component';
 import { SignupComponent } from './signup.component';
@@ -27,12 +35,19 @@ import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
   imports: [
     BrowserModule,
     ProfileModule,
+    GameModule,
+    ReviewModule,
     AppRoutingModule,
     ProfileRoutingModule,
+    GameRoutingModule,
+    ReviewRoutingModule,
     FormsModule,
+    ClickOutsideModule,
   ],
   providers: [
     ProfileService,
+    GameService,
+    ReviewService,
     AuthService,
     AuthGuard,
     {

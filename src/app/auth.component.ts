@@ -8,7 +8,8 @@ import { AuthService } from './auth.service';
   templateUrl: './auth.component.html',
 })
 export class AuthComponent implements OnInit {
-  isLogin = false;
+  isLogin = 1;
+  loginOff = true;
   user = null;
 
   constructor(
@@ -21,10 +22,22 @@ export class AuthComponent implements OnInit {
   }
 
   getUser() {
-    this.authService.getUser().subscribe(_user => {
-      this.user = _user;
-      console.log(this.user);
-    })
+    this.user = null;
+    setTimeout(() => {
+      if (this.authService.isLoggedIn()) {
+        this.user = this.authService.user;
+      }
+    }, 200);
+  }
+
+  selectLogin(show: number) {
+    if (this.isLogin === show) {
+      this.loginOff = true;
+      this.isLogin = 1;
+    } else {
+      this.loginOff = false;
+      this.isLogin = show;
+    }
   }
 
   logout() {

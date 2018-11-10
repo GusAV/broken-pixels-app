@@ -9,8 +9,10 @@ import { AuthComponent } from './auth.component';
   templateUrl: './signup.component.html',
 })
 export class SignupComponent implements OnInit {
+
   signupError: any;
-  user = {};
+  userForm = {};
+  inputType = 'password';
 
   constructor(
     private authComponent: AuthComponent,
@@ -19,22 +21,26 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.user = {
+    this.userForm = {
       username: '',
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   }
 
   signup() {
-    this.authService.signup(this.user).subscribe(
+    this.signupError = {};
+    this.authService.signup(this.userForm).subscribe(
       success => {
-        this.user = {};
-        this.router.navigate(['profiles'])
+        this.userForm = {};
         this.authComponent.getUser();
       }, error => {
-        this.signupError = error
+        this.signupError = error['error'];
       }
     );
+  }
+
+  changeType(_type: string, e: Event) {
+    this.inputType = _type;
   }
 }

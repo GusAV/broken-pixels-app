@@ -10,7 +10,7 @@ import { Profile } from './types/profile-model';
 })
 export class ProfileComponent implements OnInit {
 
-  profiles: any = [];
+  profiles = [];
 
   constructor(
     private profileService: ProfileService,
@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.profileService.getProfiles().subscribe(_profiles => {
       this.profiles = _profiles['results'];
-      console.log(this.profiles);
     });
   }
 }

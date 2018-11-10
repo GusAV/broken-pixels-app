@@ -1,11 +1,25 @@
-<div>
-  <h1>Signup</h1>
-</div>
+<div class="login-box">
+  <div class="login-inputs">
+    <div class="input">
+      <input [(ngModel)]="userForm.username" type="text" placeholder="Username">
+    </div>
 
-<div>
-  <input [(ngModel)]="user.username" type="text" placeholder="Username">
-  <input [(ngModel)]="user.email" type="email" placeholder="Email">
-  <input [(ngModel)]="user.password" type="password" placeholder="Password">
+    <div class="input">
+      <input [(ngModel)]="userForm.email" type="text" placeholder="Email">
+    </div>
+
+    <div class="input">
+      <!--<i *ngIf="inputType === 'password'" (click)="changeType('text', $event)" class="fas fa-eye input-icon"></i>-->
+      <!--<i *ngIf="inputType === 'text'" (click)="changeType('password', $event)" class="fas fa-eye-slash input-icon"></i>-->
+      <input [(ngModel)]="userForm.password" type="{{ inputType }}" placeholder="Password">
+    </div>
+  </div>
+
   <button (click)="signup()">Sign up</button>
-  {{ singupError?.message }}
+
+  <div class="errorBox">
+    <p *ngFor="let uerror of signupError?.username">Username {{ uerror }}</p>
+    <p *ngFor="let eerror of signupError?.email">Email {{ perror }}</p>
+    <p *ngFor="let perror of signupError?.password">Password {{ perror }}</p>
+  </div>
 </div>

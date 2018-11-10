@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { CanActivate, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -12,29 +12,32 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class AuthService {
-  private apiRoot = 'http://localhost:8000/';
+  private apiRoot = environment.apiRoot;
+  user: any = null;
 
   constructor(
     private http: HttpClient,
   ) {}
 
   private setSession(authResult) {
+    this.user = null;
     const token = authResult.token;
     const payload = <JWTPayload> jwtDecode(token);
     const expiresAt = moment.unix(payload.exp);
 
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    this.getUser();
   }
 
   get token(): string {
     return localStorage.getItem('token');
   }
 
-  login(username: string, password: string) {
+  login(username_or_email: string, password: string) {
     return this.http.post(
       this.apiRoot.concat('login/'),
-      { username, password }
+      { username_or_email, password }
     ).pipe(
       tap(response => {
         this.setSession(response);
@@ -46,6 +49,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
+    this.user = null;
   }
 
   refreshToken() {
@@ -88,12 +92,13 @@ export class AuthService {
   }
 
   getUser() {
-    if (this.isLoggedIn()) {
-    }
-    return this.http.get(
-      this.apiRoot.concat('user/current_user/'),
-      {headers: {Authorization: this.token}}
-    )
+    this.http.get(
+      this.apiRoot.concat('user/current_user/')
+    ).subscribe(_user => {
+      this.user = _user;
+    }, error => {
+      this.user = null;
+    });
   }
 }
 
@@ -127,7 +132,6 @@ export class AuthGuard implements CanActivate {
       return true
     } else {
       this.authService.logout();
-      // this.router.navigate(['logout']);
       return false
     }
   }

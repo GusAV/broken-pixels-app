@@ -1,10 +1,21 @@
-<div>
-  <h1>Login</h1>
-</div>
+<div class="login-box">
+  <div class="login-inputs">
+    <div class="input">
+      <input #username type="text" placeholder="Username/Email">
+    </div>
 
-<div>
-  <input #username type="text" placeholder="Username">
-  <input #password type="password" placeholder="Password">
+    <div class="input">
+      <!--<i *ngIf="inputType === 'password'" (click)="changeType('text')" class="fas fa-eye input-icon"></i>-->
+      <!--<i *ngIf="inputType === 'text'" (click)="changeType('password')" class="fas fa-eye-slash input-icon"></i>-->
+      <input #password
+        type="{{ inputType }}"
+        placeholder="Password">
+    </div>
+  </div>
+
   <button (click)="login(username.value, password.value)">Login</button>
-  {{ loginError?.message }}
+
+  <div class="errorBox">
+    <p *ngFor="let error of loginError?.global">{{ error }}</p>
+  </div>
 </div>

@@ -11,6 +11,7 @@ import { AuthComponent } from './auth.component';
 })
 export class LoginComponent implements OnInit {
   loginError: any;
+  inputType = 'password';
 
   constructor(
     private authComponent: AuthComponent,
@@ -22,12 +23,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(username: string, password: string) {
+    this.loginError = {};
     this.authService.login(username, password).subscribe(
       success => {
-        this.router.navigate(['profiles']);
         this.authComponent.getUser();
-      },
-      error => this.loginError = error
+     }, error => {
+       this.loginError = error['error'];
+     }
     );
+  }
+
+  changeType(_type: string) {
+    this.inputType = _type;
   }
 }

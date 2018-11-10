@@ -1,14 +1,17 @@
-<div *ngIf="!user">
-  <app-login *ngIf="isLogin"></app-login>
-  <app-signup *ngIf="!isLogin"></app-signup>
+<div (clickOutside)="loginOff = true && isLogin = 1">
+  <div *ngIf="!user">
+    <div class="login-select">
+      <a (click)="selectLogin(2)" class="login-text" [class.selected]="isLogin === 2 && !loginOff">Login</a>
+      <a (click)="selectLogin(3)" class="login-text" [class.selected]="isLogin === 3 && !loginOff">Sign up</a>
+    </div>
 
-  <button (click)="isLogin = !isLogin">
-    <span *ngIf="isLogin">signup</span>
-    <span *ngIf="!isLogin">login</span>
-  </button>
-</div>
+    <app-login *ngIf="!loginOff && isLogin === 2"></app-login>
+    <app-signup *ngIf="!loginOff && isLogin === 3"></app-signup>
+  </div>
 
-<div *ngIf="user">
-  Welcome {{ user.username }}
-  <button (click)="logout()">Logout</button>
+  <div *ngIf="user">
+    <p class="logged-text">Welcome<span>{{ user.username }}</span>
+      <i class="far fa-times-circle" (click)="logout()"></i>
+    </p>
+  </div>
 </div>

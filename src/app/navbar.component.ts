@@ -13,8 +13,9 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.getUser().subscribe(user => {
-      console.log(user);
-    });
+  }
+
+  toMainPage() {
+    this.router.navigate(['reviews']);
   }
 }

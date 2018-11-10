@@ -1,0 +1,24 @@
+<div
+  (clickOutside)="search = null"
+  class="search-container">
+  <div class="search-box">
+    <input
+      class="search"
+      #searchComponent
+      type="text"
+      (keyup.enter)="searchGames(searchComponent.value)"
+      placeholder="Search">
+
+    <div
+      *ngIf="search" class="search-list-box">
+      <p class="list-item" *ngFor="let game of games" (click)="toGame(game)">{{ game.name }}</p>
+      <div class="paginator" *ngIf="totalPages > 1">
+        <span (click)="toFirst()" class="fas fa-angle-double-left"></span>
+        <span class="fas fa-angle-left" (click)="toPrevious()"></span>
+        <span *ngFor="let page of pages" class="number" [class.selected]="page.toString() === currentPage" (click)="changePage(page)">{{ page }}</span>
+        <span class="fas fa-angle-right" (click)="toNext()"></span>
+        <span class="fas fa-angle-double-right" (click)="toLast()"></span>
+      </div>
+    </div>
+  </div>
+</div>

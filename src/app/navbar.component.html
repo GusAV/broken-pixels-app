@@ -1,3 +1,11 @@
 <div class="navbar">
-  <app-auth></app-auth>
+  <div class="navbar-container">
+    <div (click)="toMainPage()" class="brokenpixels-logo"></div>
+
+    <app-game-list-component></app-game-list-component>
+
+    <div class="login-forms">
+      <app-auth></app-auth>
+    </div>
+  </div>
 </div>

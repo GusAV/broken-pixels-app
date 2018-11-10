@@ -1,0 +1,73 @@
+.review-container {
+  height: auto;
+  display: inline-block;
+
+  .review-box {
+    &:after {
+      @include lines-effect();
+    }
+
+    margin: 19px;
+    border-radius: 5px;
+    box-shadow: $main-white-shadow-inner;
+    background: #333333;
+    width: 30%;
+    min-height: 200px;
+    height: auto;
+    display: inherit;
+    position: relative;
+
+    .header {
+      display: flex;
+      height: 20px;
+      padding: 13px;
+      position: relative;
+
+      .author {
+        font-size: 15px;
+        font-weight: bold;
+
+        @include giggle-effect();
+
+        p {
+          color: $main-green;
+
+          span {
+            font-size: 18px;
+            color: $main-green;
+          }
+        }
+      }
+
+      .game {
+        cursor: pointer;
+        margin-left: auto;
+        font-size: 15px;
+        font-weight: bold;
+
+        @include giggle-effect();
+
+        p {
+          color: $main-green;
+
+          span {
+            font-size: 18px;
+            color: $main-green;
+          }
+        }
+      }
+    }
+
+    .review {
+      padding: 20px;
+      font-weight: bold;
+
+      @include giggle-effect();
+
+      p {
+        color: $main-green;
+        font-size: 20px;
+      }
+    }
+  }
+}
