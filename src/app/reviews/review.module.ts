@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { ReviewComponent } from './review.component';
 import { ReviewListComponent } from './review-list.component';
@@ -22,6 +23,7 @@ import { ReviewRoutingModule } from './review-routing.module';
     HttpModule,
     HttpClientModule,
     FormsModule,
+    InfiniteScrollModule,
   ],
   exports: [
     ReviewComponent,

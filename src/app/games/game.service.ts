@@ -36,4 +36,12 @@ export class GameService {
       this.apiRoot.concat('game/' + id + '/'),
     );
   }
+
+  checkUserReviews(id: number): Observable<any> {
+    const _id = id.toString();
+
+    return this.http.get(
+      this.apiRoot.concat('game/' + _id + '/review-user/')
+    );
+  }
 }

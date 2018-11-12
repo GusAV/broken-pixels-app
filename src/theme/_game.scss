@@ -81,10 +81,26 @@
       display: flex;
       align-items: center;
 
+      .select {
+        position: relative;
+
+        p {
+          &.selected {
+            text-decoration: underline;
+          }
+
+          color: $main-green;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+
       .errorText {
         color: $main-green;
         font-size: 20px;
         font-weight: bold;
+        margin-left: 20px;
       }
 
       .letters {
@@ -104,6 +120,11 @@
         margin-left: 50px;
         display: block;
         cursor: pointer;
+
+        &.disabled {
+          opacity: 0.5;
+          cursor: default;
+        }
       }
     }
   }

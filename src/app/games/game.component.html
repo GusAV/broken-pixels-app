@@ -10,9 +10,10 @@
     </div>
 
     <div class="review-textarea">
-      <div *ngIf="!reviewText" class="dash"></div>
+      <div *ngIf="!reviewText && !hasReview" class="dash"></div>
       <textarea
-        placeholder="Write your critic"
+        [disabled]="hasReview"
+        placeholder="{{ placeholder }}"
         maxlength="200"
         [class.color]="reviewText"
         (keyup)="countLetters()"
@@ -20,9 +21,17 @@
         ></textarea>
 
       <div class="review-footer">
+        <div *ngIf="!hasReview" (clickOutside)="showPixelChoices = false" class="select">
+          <p (click)="changePixelChoice()" class="selected">{{ pixelSelected.display_name }}</p>
+
+          <div *ngIf="showPixelChoices" class="choices-box">
+            <p *ngFor="let pixel of pixelChoices" (click)="selectPixel(pixel)">{{ pixel.display_name }}</p>
+          </div>
+        </div>
+
         <span *ngIf="noUserError" class="errorText">Please login before sending a review</span>
-        <span class="letters">{{ countLetters() }}</span>
-        <button (click)="createReview()">Send</button>
+        <span *ngIf="!hasReview" class="letters">{{ countLetters() }}</span>
+        <button *ngIf="!hasReview" [class.disabled]="!reviewText || pixelSelected.value < 0" [disabled]="!reviewText || pixelSelected.value < 0"(click)="createReview()">Send</button>
       </div>
     </div>
   </div>

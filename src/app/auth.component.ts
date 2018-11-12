@@ -23,9 +23,12 @@ export class AuthComponent implements OnInit {
 
   getUser() {
     this.user = null;
+
     setTimeout(() => {
       if (this.authService.isLoggedIn()) {
-        this.user = this.authService.user;
+        this.authService.getUser().subscribe(_user => {
+          this.user = _user;
+        });
       }
     }, 200);
   }

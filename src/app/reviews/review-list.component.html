@@ -1,4 +1,9 @@
-<div class="review-container">
+<div infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="getMoreReviews()"
+     [scrollWindow]="true"
+     class="review-container">
   <div class="review-box" *ngFor="let review of reviews">
     <div class="header">
       <div class="author">

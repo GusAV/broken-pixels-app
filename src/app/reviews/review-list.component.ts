@@ -13,6 +13,7 @@ import { Review } from './types/review-model';
 export class ReviewListComponent implements OnInit {
 
   reviews: Review[] = [];
+  page = 1;
 
   constructor(
     private reviewService: ReviewService,
@@ -24,7 +25,7 @@ export class ReviewListComponent implements OnInit {
     this.updateList();
   }
 
-  updateList() {
+  updateList(page = null) {
     this.route.paramMap.subscribe(_params => {
       let searchParams = new HttpParams();
 
@@ -32,13 +33,28 @@ export class ReviewListComponent implements OnInit {
         searchParams = searchParams.set('game', _params.get('id'));
       }
 
+      if (page) {
+        this.page += 1;
+        searchParams = searchParams.set('page', this.page.toString());
+      }
+
       this.reviewService.getReviews(searchParams).subscribe(_reviews => {
-        this.reviews = _reviews['results'];
+        if (this.page > 1) {
+          for (const re of _reviews['results']) {
+            this.reviews.push(re);
+          }
+        } else {
+          this.reviews = _reviews['results'];
+        }
       });
     });
   }
 
   toGame(id: number) {
     this.router.navigate(['games', id]);
+  }
+
+  getMoreReviews() {
+    this.updateList(1);
   }
 }

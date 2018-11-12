@@ -21,6 +21,11 @@ export class GameComponent implements OnInit {
   user: any;
   noUserError = false;
   disableText = false;
+  pixelChoices = [];
+  pixelSelected = { value: -1, display_name: 'Select your rating choice:' };
+  showPixelChoices = false;
+  hasReview = false;
+  placeholder = 'Write your critic...';
 
   constructor(
     private gameService: GameService,
@@ -36,12 +41,17 @@ export class GameComponent implements OnInit {
 
       this.gameService.getGame(id).subscribe(_game => {
         this.game = _game;
+        this.getUser();
 
         if (this.game.cover) {
           this.cover = this.game.cover['url'];
         } else {
           this.cover = this.customCover;
         }
+
+        this.reviewService.getReviewOptions().subscribe(_options => {
+          this.pixelChoices = _options['actions']['POST']['pixel'].choices;
+        });
       });
     });
   }
@@ -50,7 +60,10 @@ export class GameComponent implements OnInit {
     this.noUserError = false;
 
     if (this.authService.isLoggedIn()) {
-      this.user = this.authService.user;
+      this.authService.getUser().subscribe(_user => {
+        this.user = _user;
+        this.getCanReview();
+      });
     } else {
       this.noUserError = true;
       this.authComponent.loginOff = false;
@@ -62,16 +75,16 @@ export class GameComponent implements OnInit {
     if (!this.user) {
       this.getUser();
     } else {
-
       const _review = {
         review: this.reviewText,
-        user: this.user.id,
         game: this.game.id,
+        pixel: this.pixelSelected.value,
       };
 
       this.reviewService.createReview(_review).subscribe(_res => {
         this.reviewComponent.updateList();
         this.reviewText = '';
+        this.pixelSelected = { value: -1, display_name: 'You already wrote for this game!' };
       });
     }
   }
@@ -85,5 +98,27 @@ export class GameComponent implements OnInit {
       this.disableText = false;
     }
     return count.toString().concat('/200');
+  }
+
+  changePixelChoice() {
+    if (!this.hasReview) {
+      this.showPixelChoices = !this.showPixelChoices;
+    }
+  }
+
+  selectPixel(pixel: any) {
+    this.pixelSelected = pixel;
+    this.changePixelChoice();
+  }
+
+  getCanReview() {
+    this.gameService.checkUserReviews(this.game.id).subscribe(_res => {
+      this.hasReview = _res;
+
+      if (_res) {
+        this.pixelSelected = { value: -1, display_name: 'You already wrote for this game!' };
+        this.placeholder = "You're out of lives. You can only write one review for each game.";
+      }
+    });
   }
 }

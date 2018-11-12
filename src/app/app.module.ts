@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ClickOutsideModule } from 'ng-click-outside';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +44,7 @@ import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
     ReviewRoutingModule,
     FormsModule,
     ClickOutsideModule,
+    InfiniteScrollModule,
   ],
   providers: [
     ProfileService,

@@ -37,6 +37,12 @@ export class ReviewService {
     );
   }
 
+  getReviewOptions(): Observable<any> {
+    return this.http.options(
+      this.apiRoot.concat('review/'),
+    );
+  }
+
   createReview(data: any): Observable<any> {
     return this.http.post(
       this.apiRoot.concat('review_create/'), data

@@ -13,20 +13,19 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class AuthService {
   private apiRoot = environment.apiRoot;
-  user: any = null;
 
   constructor(
     private http: HttpClient,
   ) {}
 
   private setSession(authResult) {
-    this.user = null;
     const token = authResult.token;
     const payload = <JWTPayload> jwtDecode(token);
     const expiresAt = moment.unix(payload.exp);
 
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('username', authResult.username);
     this.getUser();
   }
 
@@ -40,6 +39,7 @@ export class AuthService {
       { username_or_email, password }
     ).pipe(
       tap(response => {
+        response['username'] = username_or_email;
         this.setSession(response);
       }),
       shareReplay(),
@@ -49,7 +49,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
-    this.user = null;
   }
 
   refreshToken() {
@@ -72,6 +71,12 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    const user = localStorage.getItem('username');
+
+    if (user) {
+      this.getUser();
+    }
+
     return moment().isBefore(this.getExpiration());
   }
 
@@ -91,14 +96,10 @@ export class AuthService {
     );
   }
 
-  getUser() {
-    this.http.get(
+  getUser(): Observable<any> {
+    return this.http.get(
       this.apiRoot.concat('user/current_user/')
-    ).subscribe(_user => {
-      this.user = _user;
-    }, error => {
-      this.user = null;
-    });
+    );
   }
 }
 
