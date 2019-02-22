@@ -1,18 +1,18 @@
 .review-container {
   height: auto;
-  display: inline-block;
+  display: inline-table;
 
   .review-box {
     &:after {
       @include lines-effect();
     }
 
-    margin: 19px;
+    margin: 19px 2.5%;
     border-radius: 5px;
     box-shadow: $main-white-shadow-inner;
     background: #333333;
-    width: 30%;
-    min-height: 200px;
+    width: 45%;
+    min-height: 220px;
     height: auto;
     display: inherit;
     position: relative;

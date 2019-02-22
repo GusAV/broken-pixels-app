@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,11 +18,14 @@ export class GameListComponent implements OnInit {
   count = 1;
   pages = [];
   totalPages = 1;
+  listToScroll = [];
 
   constructor(
     private gameService: GameService,
     private route: ActivatedRoute,
     private router: Router,
+    private el: ElementRef,
+    private render: Renderer,
   ) {}
 
   ngOnInit() {
@@ -134,5 +137,17 @@ export class GameListComponent implements OnInit {
   toGame(game) {
     this.router.navigate(['games', game.id]);
     this.search = null;
+  }
+
+  shouldScroll(id: number) {
+    const gameList = this.el.nativeElement.children[0].children[0].children[1].children;
+
+    for (const game of gameList) {
+      if (game.offsetWidth > 190
+          && id.toString() === game.id
+          && this.listToScroll.indexOf(game.id) < 0) {
+        this.listToScroll.push(game.id);
+      }
+    }
   }
 }

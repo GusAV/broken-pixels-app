@@ -9,9 +9,16 @@
       (keyup.enter)="searchGames(searchComponent.value)"
       placeholder="Search">
 
-    <div
-      *ngIf="search" class="search-list-box">
-      <p class="list-item" *ngFor="let game of games" (click)="toGame(game)">{{ game.name }}</p>
+    <div *ngIf="search" class="search-list-box">
+      <div id="{{ game.id }}"
+           class="list-item"
+           (mouseenter)="shouldScroll(game.id)"
+           [class.scroll]="listToScroll.indexOf(game.id) >= 0"
+           *ngFor="let game of games"
+           (click)="toGame(game)">
+        <p>{{ game.name }}</p>
+      </div>
+
       <div class="paginator" *ngIf="totalPages > 1">
         <span (click)="toFirst()" class="fas fa-angle-double-left"></span>
         <span class="fas fa-angle-left" (click)="toPrevious()"></span>

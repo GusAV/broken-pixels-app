@@ -23,9 +23,9 @@ export class GameComponent implements OnInit {
   disableText = false;
   pixelChoices = [];
   pixelSelected = { value: -1, display_name: 'Select your rating choice:' };
-  showPixelChoices = false;
-  hasReview = false;
   placeholder = 'Write your critic...';
+  showPixelChoices = false;
+  canReview = false;
 
   constructor(
     private gameService: GameService,
@@ -83,8 +83,7 @@ export class GameComponent implements OnInit {
 
       this.reviewService.createReview(_review).subscribe(_res => {
         this.reviewComponent.updateList();
-        this.reviewText = '';
-        this.pixelSelected = { value: -1, display_name: 'You already wrote for this game!' };
+        this.getCanReview();
       });
     }
   }
@@ -101,7 +100,7 @@ export class GameComponent implements OnInit {
   }
 
   changePixelChoice() {
-    if (!this.hasReview) {
+    if (this.canReview) {
       this.showPixelChoices = !this.showPixelChoices;
     }
   }
@@ -113,11 +112,15 @@ export class GameComponent implements OnInit {
 
   getCanReview() {
     this.gameService.checkUserReviews(this.game.id).subscribe(_res => {
-      this.hasReview = _res;
+      this.canReview = _res;
 
-      if (_res) {
+      if (_res === false) {
         this.pixelSelected = { value: -1, display_name: 'You already wrote for this game!' };
         this.placeholder = "You're out of lives. You can only write one review for each game.";
+        this.reviewText = '';
+      } else {
+        this.pixelSelected = { value: -1, display_name: 'Select your rating choice:' };
+        this.placeholder = 'Write your critic...';
       }
     });
   }

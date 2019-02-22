@@ -2,8 +2,27 @@
   padding: 0px;
   margin: 0px;
   color: $main-font-color;
-  font-family: $font-stack;
   outline-color: transparent;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.content {
+  height: 100%;
+  background: $main-background;
+  background: #111111;
+  display: block;
+  font-family: $font-stack;
+
+  @media(min-width: 769px) {
+    height: 100%;
+  }
 }
 
 .main-body {
@@ -11,5 +30,36 @@
   padding: 120px 50px 0;
   background: $main-background;
   background: #111111;
+
+  @media(min-width: 769px) {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 50px 20px 290px;
+  }
+}
+
+.loading {
+  color: $main-green;
+  font-size: 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 50px 0;
+  justify-content: center;
+
+  &:after {
+    @include ellipsis-animation()
+  }
+
+  @media(min-width: 769px) {
+    padding: 0px 50px 0px 290px;
+  }
+
+  .fas {
+    color: $main-green;
+    margin-right: 10px;
+
+    @include float-ghost();
+  }
 }
 

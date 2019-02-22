@@ -22,6 +22,7 @@ export class ReviewListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.page = 0;
     this.updateList();
   }
 
