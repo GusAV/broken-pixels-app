@@ -13,7 +13,7 @@
   "dependencies": {
     "@angular/animations": "^7.2.6",
     "@angular/common": "^7.2.6",
-    "@angular/compiler": "^7.2.6",
+    "@angular/compiler": "^9.0.6",
     "@angular/core": "^7.2.6",
     "@angular/forms": "^7.2.6",
     "@angular/http": "^7.2.6",
@@ -25,14 +25,14 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "ng-click-outside": "^4.0.0",
-    "ngx-infinite-scroll": "^6.0.1",
+    "ngx-infinite-scroll": "^8.0.1",
     "rxjs": "^6.4.0",
-    "tslib": "^1.9.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
-    "@angular/cli": "~7.3.3",
+    "@angular-devkit/build-angular": "^0.13.0",
+    "@angular/cli": "^9.0.6",
     "@angular/compiler-cli": "^7.2.6",
     "@angular/language-service": "^7.2.6",
     "@types/jasmine": "~2.8.6",
@@ -47,7 +47,7 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
-    "ts-node": "~5.0.1",
+    "ts-node": "^8.7.0",
     "tslint": "~5.9.1",
     "typescript": "~3.2.4"
   }
