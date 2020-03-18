@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class GameListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private el: ElementRef,
-    private render: Renderer,
+    private render: Renderer2,
   ) {}
 
   ngOnInit() {
