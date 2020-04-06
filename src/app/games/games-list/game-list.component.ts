@@ -2,8 +2,8 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { GameService } from './game.service';
-import { Game } from './types/game-model';
+import { GameService } from '../game.service';
+import { Game } from '../types/game-model';
 
 
 @Component({
@@ -13,11 +13,11 @@ import { Game } from './types/game-model';
 export class GameListComponent implements OnInit {
 
   games: Game[] = [];
-  search = '';
-  currentPage = '1';
-  count = 1;
-  pages = [];
-  totalPages = 1;
+  search: string = '';
+  currentPage: string ='1';
+  count: number = 1;
+  pages: number[] = [];
+  totalPages: number  = 1;
   listToScroll = [];
 
   constructor(
@@ -34,7 +34,7 @@ export class GameListComponent implements OnInit {
 
   queryGames() {
     if (this.search) {
-      let params = new HttpParams();
+      let params: HttpParams = new HttpParams();
 
       params = params.set('page', this.currentPage);
       params = params.set('category', '0');

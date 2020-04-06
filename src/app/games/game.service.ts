@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 import { Game } from './types/game-model';
 
 import { environment } from '../../environments/environment';

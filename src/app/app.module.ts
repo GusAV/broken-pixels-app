@@ -18,11 +18,11 @@ import { GameService } from './games/game.service';
 import { ReviewModule } from './reviews/review.module';
 import { ReviewRoutingModule } from './reviews/review-routing.module';
 import { ReviewService } from './reviews/review.service';
-import { LoginComponent } from './login.component';
-import { AuthComponent } from './auth.component';
-import { SignupComponent } from './signup.component';
-import { NavbarComponent } from './navbar.component';
-import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
+import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './auth/auth.component';
+import { SignupComponent } from './signup/signup.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthService, AuthInterceptor, AuthGuard } from './auth/auth.service';
 
 
 @NgModule({

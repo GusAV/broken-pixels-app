@@ -1,6 +1,7 @@
 .review-container {
   height: auto;
   display: inline-table;
+  width: 100%;
 
   .review-box {
     &:after {
@@ -11,11 +12,19 @@
     border-radius: 5px;
     box-shadow: $main-white-shadow-inner;
     background: #333333;
-    width: 45%;
+    width: 20vw;
+    min-width: 20vw;
+    max-width: 20vw;
     min-height: 220px;
     height: auto;
     display: inherit;
     position: relative;
+
+    @media(max-width: 769px) {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
 
     .header {
       display: flex;

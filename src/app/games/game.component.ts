@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { GameService } from './game.service';
 import { Game } from './types/game-model';
 import { ReviewService } from '../reviews/review.service';
-import { AuthService } from '../auth.service';
-import { AuthComponent } from '../auth.component';
+import { AuthService } from '../auth/auth.service';
+import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-game-component',

@@ -26,5 +26,7 @@ export class AppComponent {
         }
       }, 1000);
     });
+    
+    this.router.navigate(['reviews']);
   }
 }

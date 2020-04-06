@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { ReviewComponent } from './review.component';
-import { ReviewListComponent } from './review-list.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 import { ReviewService } from './review.service';
 import { ReviewRoutingModule } from './review-routing.module';
 

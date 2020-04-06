@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-broken-pixels-app",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}

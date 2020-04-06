@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ReviewService } from './review.service';
-import { Review } from './types/review-model';
+import { ReviewService } from '../review.service';
+import { Review } from '../types/review-model';
 
 
 @Component({
