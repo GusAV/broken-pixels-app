@@ -30,7 +30,7 @@
     "rxjs": "^6.5.4",
     "tslib": "^1.11.1",
     "zone.js": "~0.10.3",
-    "minimist": ">=0.2.1",
+    "minimist": ">=1.2.6",
     "kind-of": ">=6.0.3"
   },
   "devDependencies": {
