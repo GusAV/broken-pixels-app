@@ -12,9 +12,9 @@
     border-radius: 5px;
     box-shadow: $main-white-shadow-inner;
     background: #333333;
-    width: 20vw;
-    min-width: 20vw;
-    max-width: 20vw;
+    width: 15vw;
+    min-width: 15vw;
+    max-width: 15vw;
     min-height: 220px;
     height: auto;
     display: inherit;
@@ -35,6 +35,7 @@
       .author {
         font-size: 15px;
         font-weight: bold;
+        margin-left: auto;
 
         @include giggle-effect();
 
@@ -50,7 +51,6 @@
 
       .game {
         cursor: pointer;
-        margin-left: auto;
         font-size: 15px;
         font-weight: bold;
 
